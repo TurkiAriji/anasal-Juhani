@@ -1,0 +1,23 @@
+name = "hrly-telegram"
+main = "src/main.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+DAILY_AI_LIMIT = "10"
+WEEKLY_DIGEST = "true"
+
+[ai]
+binding = "AI"
+
+[[durable_objects.bindings]]
+name = "PERSONAL"
+class_name = "PersonalBot"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PersonalBot"]
+
+[triggers]
+crons = ["0 6 * * MON"]
